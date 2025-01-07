@@ -1,0 +1,571 @@
+function PickMushrooms.new 0
+push constant 7
+call Memory.alloc 1
+pop pointer 0
+call Screen.clearScreen 0
+pop temp 0
+push argument 0
+pop this 5
+push this 5
+call Random.setSeed 1
+pop temp 0
+push constant 180
+call Random.randRange 1
+push constant 80
+call Random.randRange 1
+push constant 0
+not
+call Mushroom.new 3
+pop this 0
+push constant 230
+push constant 120
+push constant 2
+call Rabbit.new 3
+pop this 1
+push constant 22
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push constant 16
+call String.new 1
+push constant 71
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 77
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 22
+push constant 15
+call Output.moveCursor 2
+pop temp 0
+push this 2
+call Output.printInt 1
+pop temp 0
+push constant 0
+pop this 6
+push constant 0
+pop this 2
+push pointer 0
+return
+function PickMushrooms.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call Mushroom.dispose 1
+pop temp 0
+push this 1
+call Rabbit.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function PickMushrooms.newInstance 0
+push argument 0
+call PickMushrooms.new 1
+pop static 0
+push constant 0
+return
+function PickMushrooms.getInstance 0
+push static 0
+return
+function PickMushrooms.run 3
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push this 6
+not
+not
+if-goto WHILE_END0
+label WHILE_EXP1
+push local 0
+push constant 0
+eq
+push this 6
+not
+and
+not
+if-goto WHILE_END1
+call Keyboard.keyPressed 0
+pop local 0
+push this 1
+call Rabbit.move 1
+pop temp 0
+push pointer 0
+push local 1
+call PickMushrooms.is1000Multiple 2
+pop local 2
+push local 2
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call PickMushrooms.StatusChange 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+call PickMushrooms.Pick 1
+pop temp 0
+push constant 22
+push constant 15
+call Output.moveCursor 2
+pop temp 0
+push this 2
+call Output.printInt 1
+pop temp 0
+push constant 50
+call Sys.wait 1
+pop temp 0
+push local 1
+push constant 50
+add
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 1
+push constant 1
+call Rabbit.setDirection 2
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 1
+push constant 2
+call Rabbit.setDirection 2
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push local 0
+push constant 131
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 1
+push constant 3
+call Rabbit.setDirection 2
+pop temp 0
+goto IF_END3
+label IF_FALSE3
+push local 0
+push constant 133
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 1
+push constant 4
+call Rabbit.setDirection 2
+pop temp 0
+label IF_FALSE4
+label IF_END3
+label IF_END2
+label IF_END1
+label WHILE_EXP2
+push local 0
+push constant 0
+eq
+not
+push this 6
+not
+and
+not
+if-goto WHILE_END2
+call Keyboard.keyPressed 0
+pop local 0
+push this 1
+call Rabbit.move 1
+pop temp 0
+push pointer 0
+push local 1
+call PickMushrooms.is1000Multiple 2
+pop local 2
+push local 2
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push pointer 0
+call PickMushrooms.StatusChange 1
+pop temp 0
+label IF_FALSE5
+push pointer 0
+call PickMushrooms.Pick 1
+pop temp 0
+push constant 22
+push constant 15
+call Output.moveCursor 2
+pop temp 0
+push this 2
+call Output.printInt 1
+pop temp 0
+push constant 50
+call Sys.wait 1
+pop temp 0
+push local 1
+push constant 50
+add
+pop local 1
+goto WHILE_EXP2
+label WHILE_END2
+goto WHILE_EXP0
+label WHILE_END0
+push this 6
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push constant 10
+push constant 20
+call Output.moveCursor 2
+pop temp 0
+push this 3
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push constant 25
+call String.new 1
+push constant 67
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 103
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 89
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 119
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+goto IF_END7
+label IF_FALSE7
+push constant 32
+call String.new 1
+push constant 71
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 79
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 89
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 98
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+label IF_END7
+label IF_FALSE6
+push constant 0
+return
+function PickMushrooms.Pick 11
+push argument 0
+pop pointer 0
+push this 1
+call Rabbit.getLeft 1
+pop local 0
+push this 1
+call Rabbit.getRight 1
+pop local 1
+push this 1
+call Rabbit.getTop 1
+pop local 2
+push this 1
+call Rabbit.getBtm 1
+pop local 3
+push this 0
+call Mushroom.getLeft 1
+pop local 4
+push this 0
+call Mushroom.getRight 1
+pop local 5
+push this 0
+call Mushroom.getTop 1
+pop local 6
+push this 0
+call Mushroom.getBtm 1
+pop local 7
+push local 4
+push local 1
+gt
+push local 5
+push local 0
+lt
+or
+not
+push local 6
+push local 3
+gt
+push local 7
+push local 2
+lt
+or
+not
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call Mushroom.isPoisonous 1
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+pop this 6
+goto IF_END1
+label IF_FALSE1
+push this 2
+push constant 1
+add
+pop this 2
+push this 2
+push constant 5
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+not
+pop this 6
+push constant 0
+not
+pop this 3
+label IF_FALSE2
+label IF_END1
+push constant 505
+call Random.randRange 1
+pop local 8
+push constant 225
+call Random.randRange 1
+pop local 9
+push constant 2
+call Random.randRange 1
+pop local 10
+push local 10
+push constant 1
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 0
+push local 8
+push constant 5
+add
+push local 9
+push constant 5
+add
+push constant 0
+not
+call Mushroom.changePosition 4
+pop temp 0
+goto IF_END3
+label IF_FALSE3
+push this 0
+push local 8
+push constant 5
+add
+push local 9
+push constant 5
+add
+push constant 0
+call Mushroom.changePosition 4
+pop temp 0
+label IF_END3
+label IF_FALSE0
+push constant 0
+return
+function PickMushrooms.StatusChange 1
+push argument 0
+pop pointer 0
+push constant 2
+call Random.randRange 1
+pop local 0
+push local 0
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push constant 0
+not
+call Mushroom.setStatus 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+push constant 0
+call Mushroom.setStatus 2
+pop temp 0
+label IF_END0
+push constant 0
+return
+function PickMushrooms.is1000Multiple 1
+push argument 0
+pop pointer 0
+push argument 1
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 1000
+gt
+push local 0
+push constant 1000
+eq
+or
+not
+if-goto WHILE_END0
+push local 0
+push constant 1000
+sub
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0

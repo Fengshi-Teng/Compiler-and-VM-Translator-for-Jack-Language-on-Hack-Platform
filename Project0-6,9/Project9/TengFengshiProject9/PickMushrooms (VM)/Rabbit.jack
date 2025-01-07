@@ -1,0 +1,212 @@
+/**
+ * A rabbit in a PickMushrooms game. 
+ * Has methods for drawing, erasing, moving left, right, up and down.
+ */
+class Rabbit {
+
+    field int x, y;           // the bat's screen location
+    field int width, height;  // the bat's width and height
+    field int direction;      // direction of the bat's movement
+                              //  (1 = left, 2 = right, 3 = up, 4 = down)
+
+    /** Constructs a new bat with the given location and width. */
+    constructor Rabbit new(int Ax, int Ay, int direct) {
+        let x = Ax;
+        let y = Ay;
+        let width = 16;
+        let height = 16;
+        let direction = direct;
+        do show();
+        return this;
+    }
+
+    /** Deallocates the object's memory. */
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    /** Shows the rabbit. */
+    method void show() {
+        do Screen.setColor(true);
+        
+        do Screen.drawPixel(x + 10, y + 1);
+        do Screen.drawPixel(x + 11, y + 1);
+        do Screen.drawPixel(x + 12, y + 1);
+        do Screen.drawPixel(x + 13, y + 1);
+
+        do Screen.drawPixel(x + 4, y + 2);
+        do Screen.drawPixel(x + 5, y + 2);
+        do Screen.drawPixel(x + 6, y + 2);
+        do Screen.drawPixel(x + 7, y + 2);
+        do Screen.drawPixel(x + 10, y + 2);
+        do Screen.drawPixel(x + 13, y + 2);
+
+        do Screen.drawPixel(x + 3, y + 3);
+        do Screen.drawPixel(x + 4, y + 3);
+        do Screen.drawPixel(x + 7, y + 3);
+        do Screen.drawPixel(x + 8, y + 3);
+        do Screen.drawPixel(x + 9, y + 3);
+        do Screen.drawPixel(x + 10, y + 3);
+        do Screen.drawPixel(x + 14, y + 3);
+
+        do Screen.drawPixel(x + 2, y + 4);
+        do Screen.drawPixel(x + 3, y + 4);
+        do Screen.drawPixel(x + 5, y + 4);
+        do Screen.drawPixel(x + 8, y + 4);
+        do Screen.drawPixel(x + 12, y + 4);
+        do Screen.drawPixel(x + 15, y + 4);
+
+        do Screen.drawPixel(x + 2, y + 5);
+        do Screen.drawPixel(x + 5, y + 5);
+        do Screen.drawPixel(x + 8, y + 5);
+        do Screen.drawPixel(x + 11, y + 5);
+        do Screen.drawPixel(x + 12, y + 5);
+        do Screen.drawPixel(x + 16, y + 5);
+
+        do Screen.drawPixel(x + 1, y + 6);
+        do Screen.drawPixel(x + 2, y + 6);
+        do Screen.drawPixel(x + 5, y + 6);
+        do Screen.drawPixel(x + 6, y + 6);
+        do Screen.drawPixel(x + 12, y + 6);
+        do Screen.drawPixel(x + 13, y + 6);
+        do Screen.drawPixel(x + 16, y + 6);
+
+        do Screen.drawPixel(x + 1, y + 7);
+        do Screen.drawPixel(x + 4, y + 7);
+        do Screen.drawPixel(x + 5, y + 7);
+        do Screen.drawPixel(x + 13, y + 7);
+        do Screen.drawPixel(x + 14, y + 7);
+        do Screen.drawPixel(x + 16, y + 7);
+
+        do Screen.drawPixel(x + 1, y + 8);
+        do Screen.drawPixel(x + 3, y + 8);
+        do Screen.drawPixel(x + 4, y + 8);
+        do Screen.drawPixel(x + 7, y + 8);
+        do Screen.drawPixel(x + 10, y + 8);
+        do Screen.drawPixel(x + 14, y + 8);
+        do Screen.drawPixel(x + 15, y + 8);
+
+        do Screen.drawPixel(x + 1, y + 9);
+        do Screen.drawPixel(x + 3, y + 9);
+        do Screen.drawPixel(x + 16, y + 9);
+
+        do Screen.drawPixel(x + 1, y + 10);
+        do Screen.drawPixel(x + 2, y + 10);
+        do Screen.drawPixel(x + 3, y + 10);
+        do Screen.drawPixel(x + 7, y + 10);
+        do Screen.drawPixel(x + 8, y + 10);
+        do Screen.drawPixel(x + 9, y + 10);
+        do Screen.drawPixel(x + 10, y + 10);
+        do Screen.drawPixel(x + 16, y + 10);
+
+        do Screen.drawPixel(x + 2, y + 11);
+        do Screen.drawPixel(x + 7, y + 11);
+        do Screen.drawPixel(x + 8, y + 11);
+        do Screen.drawPixel(x + 9, y + 11);
+        do Screen.drawPixel(x + 10, y + 11);
+        do Screen.drawPixel(x + 16, y + 11);
+
+        do Screen.drawPixel(x + 2, y + 12);
+        do Screen.drawPixel(x + 9, y + 12);
+        do Screen.drawPixel(x + 15, y + 12);
+
+        do Screen.drawPixel(x + 2, y + 13);
+        do Screen.drawPixel(x + 9, y + 13);
+        do Screen.drawPixel(x + 13, y + 13);
+        do Screen.drawPixel(x + 14, y + 13);
+        do Screen.drawPixel(x + 15, y + 13);
+
+        do Screen.drawPixel(x + 1, y + 14);
+        do Screen.drawPixel(x + 2, y + 14);
+        do Screen.drawPixel(x + 3, y + 14);
+        do Screen.drawPixel(x + 4, y + 14);
+        do Screen.drawPixel(x + 9, y + 14);
+        do Screen.drawPixel(x + 12, y + 14);
+        do Screen.drawPixel(x + 15, y + 14);
+        do Screen.drawPixel(x + 16, y + 14);
+
+        do Screen.drawPixel(x + 1, y + 15);
+        do Screen.drawPixel(x + 5, y + 15);
+        do Screen.drawPixel(x + 6, y + 15);
+        do Screen.drawPixel(x + 7, y + 15);
+        do Screen.drawPixel(x + 8, y + 15);
+        do Screen.drawPixel(x + 9, y + 15);
+        do Screen.drawPixel(x + 10, y + 15);
+        do Screen.drawPixel(x + 11, y + 15);
+        do Screen.drawPixel(x + 16, y + 15);
+
+        do Screen.drawPixel(x + 1, y + 16);
+        do Screen.drawPixel(x + 2, y + 16);
+        do Screen.drawPixel(x + 3, y + 16);
+        do Screen.drawPixel(x + 4, y + 16);
+        do Screen.drawPixel(x + 5, y + 16);
+        do Screen.drawPixel(x + 11, y + 16);
+        do Screen.drawPixel(x + 12, y + 16);
+        do Screen.drawPixel(x + 13, y + 16);
+        do Screen.drawPixel(x + 14, y + 16);
+        do Screen.drawPixel(x + 15, y + 16);
+        do Screen.drawPixel(x + 16, y + 16);
+        return;
+    }
+
+    /** Hides the rabbit. */
+    method void hide() {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, x+16, y+16);
+        return;
+    }
+
+    /** Sets the rabbit's direction (0=stop, 1=left, 2=right, 3=up, 4=down). */
+    method void setDirection(int Adirection) {
+        let direction = Adirection;
+        return;
+    }
+
+    /** Returns the rabbit's left edge. */
+    method int getLeft() {
+        return x;
+    }
+
+    /** Returns the rabbit's right edge. */
+    method int getRight() {
+        return x + width;
+    }
+
+    /** Returns the rabbit's bottom edge. */
+    method int getBtm() {
+        return y + height;
+    }
+
+    /** Returns the rabbit's Top edge. */
+    method int getTop() {
+        return y;
+    }
+
+    /** Moves the rabbit one step in the rabbit's direction. */
+    method void move() {
+        do hide();
+	    if (direction = 1) {
+            let x = x - 4;
+            if (x < 5) { let x = 5; }
+        }
+        else {
+            if (direction = 2) {
+                let x = x + 4;
+                if ((x + width) > 505) { let x = 505 - width;}
+            }
+            else {
+                if (direction = 3) {
+                    let y = y - 4;
+                    if (y < 5) { let y = 5; }
+                }
+                else {
+                    let y = y + 4;
+                    if (y + height > 240) { let y = 240 - height; }
+                }
+            }
+        }
+        do show();    
+        return;
+    }
+}

@@ -1,0 +1,180 @@
+/**
+ * Represents a PickMushrooms game.
+ */
+class PickMushrooms {
+
+    static PickMushrooms instance; // A PickMushrooms game  
+    field Mushroom mushroom;
+    field Rabbit rabbit;      // rabbit
+    field int num_picked;     // the number of picked mushrooms
+    field boolean success;    // true when success
+    field boolean start;      // true when game starts
+    field int seed;           // random seed
+    field boolean exit;       // true when the game is over
+
+    /** Constructs a new PickMushrooms game. */
+    constructor PickMushrooms new(int randomSeed) {
+	    do Screen.clearScreen();
+        let seed = randomSeed;
+        do Random.setSeed(seed);
+        let mushroom = Mushroom.new(Random.randRange(180), Random.randRange(80), true);
+        let rabbit = Rabbit.new(230, 120, 2);
+	    do Output.moveCursor(22,0);
+	    do Output.printString("Good Mushrooms: ");
+        do Output.moveCursor(22,15);
+        do Output.printInt(num_picked);
+
+	    let exit = false;
+	    let num_picked = 0;
+
+        return this;
+    }
+
+    /** Deallocates the object's memory. */
+    method void dispose() {
+        do mushroom.dispose();
+	    do rabbit.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    /** Creates an instance of a PickMushrooms game. */
+    function void newInstance(int randomSeed) {
+        let instance = PickMushrooms.new(randomSeed);
+        return;
+    }
+    
+    /** Returns this PickMushrooms game. */
+    function PickMushrooms getInstance() {
+        return instance;
+    }
+
+    /** Starts the game, and handles inputs from the user that control
+     *  the rabbit's movement direction. */
+    method void run() {
+        var char key;
+        var int clock;
+        var booleanc check;
+        let clock = 0;
+
+        while (~exit) {
+            // waits for a key to be pressed.
+            while ((key = 0) & (~exit)) {
+                let key = Keyboard.keyPressed();
+                do rabbit.move();
+                let check = is1000Multiple(clock);
+                if (check) {do StatusChange();}
+                do Pick();
+                do Output.moveCursor(22,15);
+                do Output.printInt(num_picked);
+                do Sys.wait(50);
+                let clock = clock + 50;
+            }
+
+            if (key = 130) { do rabbit.setDirection(1); }
+	        else {
+	            if (key = 132) { do rabbit.setDirection(2); }
+		        else {
+                    if (key = 131) { do rabbit.setDirection(3); }
+                    else {
+                        if (key = 133) { do rabbit.setDirection(4); }
+                    }
+		        }
+            }
+
+            // Waits for the key to be released.
+            while ((~(key = 0)) & (~exit)) {
+                let key = Keyboard.keyPressed();
+                do rabbit.move();
+                let check = is1000Multiple(clock);
+                if (check) {do StatusChange();}
+                do Pick();
+                do Output.moveCursor(22,15);
+                do Output.printInt(num_picked);
+                do Sys.wait(50);
+                let clock = clock + 50;
+            }
+        }
+
+	    if (exit) {
+            do Output.moveCursor(10,20);
+            if (success) {do Output.printString("Congratulations! You win!");}
+            else{
+                do Output.printString("Game Over! You ate bad mushroom!");
+            }
+	        
+	    }
+            
+        return;
+    }
+
+    /**
+     * Handles pick operation: 
+     * If the picked one is poisonous, game over.
+     * If the picked one is good, earase old mushroom and create new one.
+     * If the goal acheived, game over, too.
+    */
+    method void Pick() {
+        // check if rabbit pick the current mushroom and update infomation
+        var int rabLeft, rabRight, rabTop, rabBtm, mushLeft, mushRight, mushTop, mushBtm, newx, newy, newpoisonous;
+        let rabLeft = rabbit.getLeft();
+        let rabRight = rabbit.getRight();
+        let rabTop = rabbit.getTop();
+        let rabBtm = rabbit.getBtm();
+        let mushLeft = mushroom.getLeft();
+        let mushRight = mushroom.getRight();
+        let mushTop = mushroom.getTop();
+        let mushBtm = mushroom.getBtm();
+        if((~((mushLeft > rabRight) | (mushRight < rabLeft))) & (~((mushTop > rabBtm) | (mushBtm < rabTop)))){
+            if (mushroom.isPoisonous()){
+                let exit = true;
+            }
+            else{
+                let num_picked = num_picked + 1;
+                if (num_picked = 5){
+                    let exit = true;
+                    let success = true;
+                }
+            }
+            // creat a new mushroom
+            let newx = Random.randRange(505);
+            let newy = Random.randRange(225);
+            let newpoisonous = Random.randRange(2);
+            if(newpoisonous = 1){
+                do mushroom.changePosition(newx + 5, newy + 5, true);
+            }
+            else{
+                do mushroom.changePosition(newx + 5, newy + 5, false);
+            }
+        }
+        return;
+    }
+    
+    method void StatusChange() {
+        // change the status of mushrooms
+        var int randomNum;
+        let randomNum = Random.randRange(2);
+        if (randomNum = 1){
+            do mushroom.setStatus(true);
+        }
+        else{
+            do mushroom.setStatus(false);
+        }
+        return;
+    }
+
+    method boolean is1000Multiple(int n) {
+        // check a integer if it's multiple of 1000 
+        var int remainder; 
+        let remainder = n; 
+        while ((remainder > 1000)|(remainder = 1000)) {
+            let remainder = remainder - 1000;
+        }
+        if (remainder = 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}

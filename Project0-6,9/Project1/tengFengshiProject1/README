@@ -1,0 +1,10 @@
+# Project 1: Elementary Logic Gates
+# Fengshi Teng – October 6, 2024
+
+# Description
+
+This project focuses on creating elementary logic gates using an online hardware simulation IDE. The goal is to construct 15 basic gates, all derived from a given NAND gate. This project provides a clear demonstration of the fundamental building blocks of a chip.
+
+# Progress
+
+I successfully implemented 15 gates in HDL, and all of them function correctly within the NAND2Tetris online IDE.

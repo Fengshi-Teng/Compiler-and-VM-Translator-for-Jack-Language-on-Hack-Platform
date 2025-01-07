@@ -1,0 +1,46 @@
+/**
+ * Main class of the PickMushrooms game.
+    
+    There are mushrooms in the screen, among which some are good to eat but
+    the others are poisonous. They are randomly changed with time going by.
+    You're a small rabbit! Move yourself with →←↓↑ on your keyboard and pick 5
+    good mushrooms for your lunch. Good luck!
+ */
+class Main {
+    /** Initializes a game and starts running it. */
+    function void main() {
+        var PickMushrooms game;
+
+        // introduction of the game
+        var char key;
+        var int seed;
+        var boolean start;
+        let seed = 0;
+        let start = false;
+        
+        do Output.moveCursor(8,24);
+	    do Output.printString("PICK MUSHROOMS!");
+        do Output.moveCursor(10,2);
+        do Output.printString("Mushrooms on the screen are changing with time.");
+        do Output.moveCursor(11,2);
+        do Output.printString("Black mushrooms are poisonous. You will die if touching them.");
+        do Output.moveCursor(12,2);
+        do Output.printString("White mushrooms are good. Collect 5 of them to win.");
+        do Output.moveCursor(13,2);
+        do Output.printString("You can use arrow keys to move in four directions.");
+        do Output.moveCursor(14,2);
+        do Output.printString("PRESS ANY KEY TO STSRT!");
+
+        while((key = 0) & (~start)){
+            let key = Keyboard.keyPressed();
+            let seed = seed + 1;
+        }
+
+        // start game
+        do PickMushrooms.newInstance(seed);
+        let game = PickMushrooms.getInstance();
+        do game.run();
+        do game.dispose();
+        return;
+    }
+}

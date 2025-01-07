@@ -1,0 +1,140 @@
+/**
+ * A mushroom in a PickMushrooms game. 
+ * Has methods for drawing, erasing, changing status.
+ */
+class Mushroom {
+
+    field int x, y;           // the bat's screen location
+    field int width, height;  // the bat's width and height
+    field boolean poisonous;  // the status of mushroom
+    field int memAddress;     // the start of screen
+
+    /** Constructs a new bat with the given location and width. */
+    constructor Mushroom new(int Ax, int Ay, boolean newpoisonous) {
+        let x = Ax;
+        let y = Ay;
+        let width = 11;
+        let height = 13;    // a given size of a mushroom
+        let poisonous = newpoisonous;
+        do show();
+        return this;
+    }
+
+    /** Deallocates the object's memory. */
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    /** Draws a mushroom. */
+    method void show() {
+        var int memAddress;
+        let memAddress = 16384 + (y * 32) + (x / 16);
+        if (poisonous){
+            do Memory.poke(memAddress + 0, 48);
+            do Memory.poke(memAddress + 32, 88);
+            do Memory.poke(memAddress + 64, 188);
+            do Memory.poke(memAddress + 96, 188);
+            do Memory.poke(memAddress + 128, 380);
+            do Memory.poke(memAddress + 160, 766);
+            do Memory.poke(memAddress + 192, 2015);
+            do Memory.poke(memAddress + 224, 959);
+            do Memory.poke(memAddress + 256, 126);
+            do Memory.poke(memAddress + 288, 112);
+            do Memory.poke(memAddress + 320, 240);
+            do Memory.poke(memAddress + 352, 240);
+            do Memory.poke(memAddress + 384, 504);
+            do Memory.poke(memAddress + 416, 0);
+            do Memory.poke(memAddress + 448, 0);
+		    do Memory.poke(memAddress + 480, 0);
+        }
+        else{
+            do Memory.poke(memAddress + 0, 48);
+            do Memory.poke(memAddress + 32, 72);
+            do Memory.poke(memAddress + 64, 140);
+            do Memory.poke(memAddress + 96, 132);
+            do Memory.poke(memAddress + 128, 260);
+            do Memory.poke(memAddress + 160, 518);
+            do Memory.poke(memAddress + 192, 1137);
+            do Memory.poke(memAddress + 224, 969);
+            do Memory.poke(memAddress + 256, 94);
+            do Memory.poke(memAddress + 288, 80);
+            do Memory.poke(memAddress + 320, 144);
+            do Memory.poke(memAddress + 352, 144);
+            do Memory.poke(memAddress + 384, 504);
+            do Memory.poke(memAddress + 416, 0);
+            do Memory.poke(memAddress + 448, 0);
+            do Memory.poke(memAddress + 480, 0);
+        }
+        return;
+    }
+
+    /** Hides the mushroom. */
+    method void hide() {
+        var int memAddress;
+        let memAddress = 16384 + (y * 32) + (x / 16);
+        do Memory.poke(memAddress + 0, 0);
+        do Memory.poke(memAddress + 32, 0);
+        do Memory.poke(memAddress + 64, 0);
+        do Memory.poke(memAddress + 96, 0);
+        do Memory.poke(memAddress + 128, 0);
+        do Memory.poke(memAddress + 160, 0);
+        do Memory.poke(memAddress + 192, 0);
+        do Memory.poke(memAddress + 224, 0);
+        do Memory.poke(memAddress + 256, 0);
+        do Memory.poke(memAddress + 288, 0);
+        do Memory.poke(memAddress + 320, 0);
+        do Memory.poke(memAddress + 352, 0);
+        do Memory.poke(memAddress + 384, 0);
+        do Memory.poke(memAddress + 416, 0);
+        do Memory.poke(memAddress + 448, 0);
+        do Memory.poke(memAddress + 480, 0);
+        return;
+    }
+
+    /** Sets the mushroom's status. */
+    method void setStatus(boolean newpoisonous) {
+        do hide();
+        let poisonous = newpoisonous;
+        do show();
+        return;
+    }
+
+    /** Change the mushroom's position. */
+    method void changePosition(int Ax, int Ay, boolean newpoisonous) {
+        do hide();
+        let x = Ax;
+        let y = Ay;
+        let poisonous = newpoisonous;
+        do show();
+        return;
+    }
+
+    /** Returns the mushroom's left edge. */
+    method int getLeft() {
+        return x;
+    }
+
+    /** Returns the mushroom's right edge. */
+    method int getRight() {
+        return x + width;
+    }
+
+        /** Returns the mushroom's bottom edge. */
+    method int getBtm() {
+        return y + height;
+    }
+
+    /** Returns the mushroom's Top edge. */
+    method int getTop() {
+        return y;
+    }
+
+    /** Returns the mushroom's status. */
+    method int isPoisonous() {
+        return poisonous;
+    }
+
+}
+
+
