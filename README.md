@@ -1,4 +1,4 @@
-# [README]
+# README
 
 Compiler and VM Translator for Jack Language on Hack Platform
 
